@@ -1,0 +1,18 @@
+<?php
+
+namespace Modules\{module}\src\Repositories;
+
+use Modules\{module}\src\Models\{module};
+use App\Repositories\BaseRepository;
+
+class {module}Repository extends BaseRepository implements {module}RepositoryInterface
+{
+  public function getModel()
+  {
+    return {module}::class;
+  }
+  public function getProduct()
+  {
+    return $this->model->select('*')->take(5)->get();
+  }
+}

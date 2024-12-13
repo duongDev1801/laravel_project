@@ -11,13 +11,14 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
   {
     return Category::class;
   }
-  public function getProduct()
-  {
-    return $this->model->select('*')->take(5)->get();
-  }
 
+
+  public function getCategories()
+  {
+    return $this->model->select('*')->latest();
+  }
   public function getAllCategories()
   {
-    return $this->model::with('parent')->select('*');
+    return $this->getCategories()->get();
   }
 }

@@ -9,7 +9,7 @@
         <thead>
             <tr>
                 <th>Tên danh mục</th>
-                <th>Slug</th>
+                <th>Link</th>
                 <th>Danh mục cha</th>
                 <th>Thời gian</th>
                 <th style="width:5%">Sửa</th>
@@ -19,8 +19,7 @@
         <tfoot>
             <tr>
                 <th>Tên danh mục</th>
-                <th>Slug</th>
-                <th>Danh mục cha</th>
+                <th>Link</th>
                 <th>Thời gian</th>
                 <th style="width:5%">Sửa</th>
                 <th style="width:5%">Xoá</th>
@@ -43,14 +42,9 @@
                         data: 'name',
                     },
                     {
-                        data: 'slug',
+                        data: 'link',
                     },
-                    {
-                        data: 'parent_id',
-                        // render: function(data, type, row, meta) {
-                        //     return '<strong>' + data + '</strong>';
-                        // }
-                    },
+
                     {
                         data: 'created_at',
                     },

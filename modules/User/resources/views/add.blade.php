@@ -55,7 +55,7 @@
             </div>
             <div class="col-2">
                 <button type="submit" class="btn btn-primary">Lưu lại</button>
-                <a href="{{ route('admin.user.index') }}" class="btn btn-danger">Huỷ</a>
+                <a href="{{ route('admin.users.index') }}" class="btn btn-danger">Huỷ</a>
             </div>
         </div>
     </form>

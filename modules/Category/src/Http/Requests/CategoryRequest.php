@@ -27,8 +27,7 @@ class CategoryRequest extends FormRequest
         $rules = [
             'name' => 'required|max:255',
             'slug' => 'required|max:255',
-            'parent_id' => 'required',
-
+            'parent_id' => 'required|integer',
         ];
 
         return $rules;
@@ -36,18 +35,18 @@ class CategoryRequest extends FormRequest
     public function messages()
     {
         return [
-            'required' => config('validation.messages.required'),
-            'max' => config('validation.messages.max'),
-            'interger' => config('validation.messages.interger')
+            'required' => config('category.validation.messages.required'),
+            'max' => config('category.validation.messages.max'),
+            'interger' => config('category.validation.messages.interger')
         ];
     }
 
     public function attributes()
     {
         return [
-            'name' => config('validation.attributes.name'),
-            'slug' => config('validation.attributes.slug'),
-            'parent_id' => config('validation.attributes.parent_id')
+            'name' => config('category.validation.attributes.name'),
+            'slug' => config('category.validation.attributes.slug'),
+            'parent_id' => config('category.validation.attributes.parent_id')
         ];
     }
 }

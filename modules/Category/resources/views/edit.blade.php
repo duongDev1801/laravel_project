@@ -43,8 +43,6 @@
                     @enderror
                 </div>
             </div>
-
-
         </div>
         <div class="col-2">
             <button type="submit" class="btn btn-primary">Lưu lại</button>

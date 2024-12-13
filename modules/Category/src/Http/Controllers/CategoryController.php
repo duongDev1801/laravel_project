@@ -26,16 +26,17 @@ class CategoryController extends Controller
   }
   public function create()
   {
+    $categories = $this->categoryRepo->getAllCategories();
     $pageTitle = config('title.create');
-    return view('category::add', compact('pageTitle'));
+    return view('category::add', compact('pageTitle', 'categories'));
   }
+
 
   public function data()
   {
 
-    $categories = $this->categoryRepo->getAllCategories();
-    // dd($categories);
-// dd($user->id, gettype($user->id));
+    $categories = $this->categoryRepo->getCategories();
+
     $data = DataTables::of($categories)
       ->addColumn('edit', function ($category) {
         return '<a href="' . route('admin.categories.edit', $category) . '" class="btn btn-warning">Sửa</a>';
@@ -43,13 +44,14 @@ class CategoryController extends Controller
       ->addColumn('delete', function ($category) {
         return '<a href="' . route('admin.categories.delete', $category) . '" class="btn btn-danger delete-action">Xóa</a>';
       })
+      ->addColumn('link', function ($category) {
+        return '<a href="" class="btn btn-primary">Xem</a>';
+      })
       ->editColumn('created_at', function ($category) {
         return Carbon::parse($category->created_at)->format('d/m/Y H:i:s');
       })
-      ->editColumn('parent_id', function ($category) {
-        return $category->parent ? $category->parent->name : 'Root';
-      })
-      ->rawColumns(['edit', 'delete'])
+
+      ->rawColumns(['edit', 'delete', 'link'])
       ->toJson();
     return $data;
   }
@@ -72,9 +74,7 @@ class CategoryController extends Controller
   {
 
     $pageTitle = config('title.edit');
-    if (!$category) {
-      abort(404);
-    }
+
     return view('category::edit', compact('category', 'pageTitle'));
   }
 

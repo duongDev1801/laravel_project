@@ -21,12 +21,12 @@ class UserController extends Controller
   }
   public function index()
   {
-    $pageTitle = config('title.list');
+    $pageTitle = __('user::title.list');
     return view('user::list', compact('pageTitle'));
   }
   public function create()
   {
-    $pageTitle = config('title.create');
+    $pageTitle = __('user::title.create');
     return view('user::add', compact('pageTitle'));
   }
 
@@ -69,7 +69,7 @@ class UserController extends Controller
   public function edit(User $user)
   {
 
-    $pageTitle = config('title.edit');
+    $pageTitle = __('user::title.edit');
     if (!$user) {
       abort(404);
     }
@@ -78,14 +78,13 @@ class UserController extends Controller
 
   public function update(UserRequest $request, User $user)
   {
-
     $data = $request->except('_token', 'password', '_method');
     if ($request->password) {
       $data['password'] = Hash::make($request->password);
     }
     $this->userRepo->update($user->id, $data);
     return back()->with([
-      'msg' => config('messages.success.update'),
+      'msg' => __('user::messages.update.success'),
       'type' => 'success'
     ]);
   }
